@@ -1,0 +1,36 @@
+[project]
+name = "antigravity"
+version = "0.1.0"
+description = "Universal AI quality gate — Fusion Gate + Hooks + Keyboard + Commander"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.11"
+dependencies = [
+    "structlog>=24.0.0",
+]
+
+[project.optional-dependencies]
+keyboard = [
+    "pyobjc-framework-Quartz>=10.0",
+]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.9.0",
+]
+
+[project.scripts]
+antigravity = "antigravity.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "I"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
