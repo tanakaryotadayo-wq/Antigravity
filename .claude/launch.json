@@ -1,0 +1,35 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "stack",
+      "runtimeExecutable": "docker",
+      "runtimeArgs": ["compose", "up"],
+      "port": 8011
+    },
+    {
+      "name": "api",
+      "runtimeExecutable": "docker",
+      "runtimeArgs": ["compose", "up", "api"],
+      "port": 8011
+    },
+    {
+      "name": "mcp",
+      "runtimeExecutable": "docker",
+      "runtimeArgs": ["compose", "up", "mcp"],
+      "port": 8790
+    },
+    {
+      "name": "chatgpt-mcp",
+      "runtimeExecutable": "docker",
+      "runtimeArgs": ["compose", "up", "chatgpt-mcp"],
+      "port": 8765
+    },
+    {
+      "name": "jaeger",
+      "runtimeExecutable": "docker",
+      "runtimeArgs": ["compose", "up", "jaeger"],
+      "port": 16686
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+    "hooks": {
+        "SessionStart": [
+            {
+                "matcher": "startup|resume",
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/session-init.sh",
+                        "statusMessage": "🔮 Fusion Gate v4 initializing..."
+                    }
+                ]
+            }
+        ],
+        "UserPromptSubmit": [
+            {
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/prompt-guard.sh",
+                        "statusMessage": "🛡️ Prompt safety check..."
+                    }
+                ]
+            }
+        ],
+        "PreToolUse": [
+            {
+                "matcher": "Bash",
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/bash-guard.sh",
+                        "statusMessage": "🔒 Command safety check..."
+                    }
+                ]
+            },
+            {
+                "matcher": "Write|Edit",
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/diff-guard.sh",
+                        "statusMessage": "🔍 Diff guard scanning..."
+                    }
+                ]
+            }
+        ],
+        "PostToolUse": [
+            {
+                "matcher": "Write|Edit",
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/post-write-lint.sh",
+                        "async": true,
+                        "timeout": 120,
+                        "statusMessage": "🧹 Running Ruff + tests..."
+                    }
+                ]
+            }
+        ],
+        "Stop": [
+            {
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/quality-gate.sh",
+                        "statusMessage": "🎯 CBF quality gate..."
+                    }
+                ]
+            }
+        ]
+    }
+}
