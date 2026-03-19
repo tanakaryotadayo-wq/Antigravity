@@ -26,7 +26,7 @@ def run(prompt: str, *, engine: GateEngine, project_dir: str = ".") -> int:
     gemini_cmd = _find_gemini()
     if not gemini_cmd:
         print("❌ gemini コマンドが見つかりません", file=sys.stderr)
-        print("   インストール: npm install -g @anthropic-ai/gemini-cli", file=sys.stderr)
+        print("   インストール: npm install -g @google/gemini-cli", file=sys.stderr)
         return 1
 
     # 実行
